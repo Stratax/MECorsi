@@ -1,0 +1,130 @@
+/*Styler for Work Satation
+ Designed by StrataDevp*/
+
+*{
+	box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {height: 100%;}
+h1{
+	text-align: center;
+	margin: 10px;
+}
+
+/*.rowcnt{}*/
+.rowcnt::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+[class*="col-"]{
+	float: left;
+	padding: 20 px;
+	border: 0 px solid red;
+}
+
+#titleBar{
+	background-color: rgba(0,0,0, 0.8);
+    color: gainsboro;
+    text-align: center;
+    padding: 10px;
+    font-size: 25px;
+}
+#titleMenu, #title{
+	padding: 5px;
+}
+
+nav{
+	position:fixed;
+    background-color: rgba(0,0,0, 0.8);
+    padding: 5px;
+	text-align: center;
+    height: 100vh;
+}
+
+ul{
+    list-style: none;
+    text-align: center;
+}
+li{
+    padding: 15px 30px;
+    color: white;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-clip: padding-box;
+}
+/* Add menu's icons*/
+
+.panel{
+	background-color: none;
+	display: none;
+	padding: 5px;
+}
+.headerTableList{
+    border-radius: 10px 10px 0px 0px;
+    font-size: 16px;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+}
+
+.fullPanel{
+    height: 450px;
+    text-align: center;
+    border: 4px solid gray;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+footer{
+	position:fixed;
+	bottom:0px;
+	background-color: black;
+	text-align: center;
+	width: 100%;
+	padding: 15px;
+	-webkit-animation-name: color-transition;
+	animation-name: color-transition;
+	-webkit-animation-duration: 5s;
+	animation-duration: 5s;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;}
+
+@media  only screen and (min-width: 900px) {
+	
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}	
+    
+}
+@-webkit-keyframes color-transition {
+	0% {color: #111;}
+	33% {color: #101088;}
+	66% {color: #2020ff;}
+	100% {color: #111;}
+}
+
+@keyframes color-transition {
+	0% {color: #111;}
+	33% {color: #101088;}
+	66% {color: #2020ff;}
+	100% {color: #111;}
+}

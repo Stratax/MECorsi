@@ -1,0 +1,10 @@
+#userDiv{ /*Div de cierre de Sesion y configuración de Usuarios*/
+	position: absolute;
+	right: 0px;
+	color: white;
+    background-color: rgba(0,0,0, 0.8);
+    padding: 10px;
+	text-align: center;
+	width: 20%;
+	display: none;	
+}

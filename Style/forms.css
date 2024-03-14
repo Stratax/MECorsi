@@ -1,0 +1,140 @@
+input{
+	margin-top: 10px;
+	outline: none;
+	font-size: 12px;
+	text-align: center;
+}
+
+input[type="text"],input[type="password"]{
+	width: 200px;
+	padding: 5px;
+	color: grey;
+	border: none;
+	border-bottom: 2px solid black;
+	transition-duration: 0.8s;
+}
+input[type="text"]:focus,input[type="password"]:focus{
+	color: #3080C0;
+	border-bottom: 2px solid #3080C0;
+}
+[type="submit"],[type="button"]{
+	color: #3080C0;
+	background-color: white;
+	border: 2px solid #3080C0;
+	padding: 5px 50px;
+	margin-top: 10px;
+	transition-duration: 0.4s;
+}
+[type="submit"]:hover,[type="button"]:hover{
+	color: white;
+	background-color: #3080C0;
+}
+
+input[type="date"]{
+	padding: 4px;
+	border-bottom: 2px solid #417700;
+	border-right: 2px solid #417700;
+}
+select{
+	text-align: center;
+	margin: 10px;
+	padding: 5px;
+	outline: none;
+	font-size: 14px;
+	color: gray;
+	background: white;
+	min-width: 200px;
+	max-width: 200px;
+	border: none;
+	border-bottom: 2px solid black;
+	transition-duration: 0.5s;
+}
+
+select:focus{
+	color: #3080C0;
+	border-bottom: 2px solid #3080C0;
+}
+option{
+	margin-top: 15px;
+	padding: 5px;
+	outline: none;
+	font-size: 14px;
+	color: black;
+	background: none;
+	min-width: 200px;
+	max-width: 200px;
+	border-bottom: 2px solid gray ;
+}
+
+
+
+fieldset{
+	margin: 5px;
+}
+legend{
+	font-size: 15px;
+}
+
+.saveCloseBtn{
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+.form1{
+	outline:none;
+	font-size: 14px;
+	text-align: center;
+    border: none;
+}
+
+.form1[type="text"]{
+	padding-top: 5px;
+    border-bottom: 2px solid black;
+    transition-duration: 1s;
+}
+.form1[type="text"]:focus{
+	color: #417700;
+	border-bottom: 2px solid #417700;
+}
+
+
+.datos{
+	font-size: 12px;	
+}
+
+
+#btnSave{
+	padding: 6px 12px;
+	color: #417700;
+	background-color: white;
+	border: 2px solid #417700;
+	transition-duration: 0.4s;
+}
+#btnSave:hover{
+	color: white;
+	background-color:#417700;
+}
+
+#btnClose{
+	padding: 6px 12px;
+	color: #c03030;
+	background-color: white;
+	border: 2px solid #C03030;
+	transition-duration: 0.4s;
+}
+#btnClose:hover{
+	color: white;
+	background-color:#C03030;
+}
+
+.btnRed{
+	color: #C03030;
+	border: 2px solid #C03030;
+}
+.btnRed:hover{
+	color: white;
+	background-color:#C03030;
+}
+
+
+

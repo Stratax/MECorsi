@@ -1,0 +1,22 @@
+SSA
+    Activar el inicio (advertencias de vigencias de polizas etc.)
+    Desvincular el operador de la unidad
+    Higlight de los elementos seleccionados.
+    Aumentar espacio del registro SCT
+
+Comercial:
+    Agregar opción de fijado de manifiesto de entrada.
+    Agregar botonera al final del manifiesto de Entrada.
+        Botón1: Materiales (Solo si el estatus es PR)
+        Botón2: Editar Manifiesto (Solo la parte de OS)
+        Botón3: Cancelar Manifiesto (Solo la parte de OS)
+
+    Estatus del manifiesto de Entrada 
+            OS: Orden de servicio. Se hace la orden de servicio pero el material no llega aún a planta
+            PR: Proceso. El material llegó a planta y se cargo en el manifiesto
+            CR: Manifiesto cerrado. El manifiesto se cierra
+            CN: Cancelado. El manifiesto se canceló  
+
+
+
+

@@ -1,6 +1,23 @@
 function editUser(user){
-	window.open("./Plantillas/editUser.php?id="+user,"editUser","width=400,height=300,left=200,top=30")
+
+	$("#idUserLbl").html(user);
+	$.post(
+		"./php/getUser.php",
+		{
+			idUser : user
+		},
+		function(data,status){
+			console.log("status -> " + status);
+			$("#UName").val(data.UName);
+			$("#UPass").val(data.UPass);
+			$("#UCategory option[value =" +data.UCategory+"]").prop("selected",true);
+		},
+		"json"
+	);
+
+	$("#editUser").css("display","flex");
 }
+
 function show(n){
 	switch(n){
 		case 1:
@@ -16,7 +33,7 @@ function show(n){
 			$("#menu2").show();
 			$("li").css("background-color","transparent");
 			$("#m_User").css("background-color","#3080C0");
-			$("#userHolder").load("../Admin/php/getUser.php");
+			$("#userHolder").load("../Admin/php/getUser.php",{idUser : -1});
 		break;
 		case 3:
 			$("#title").text("Módulos")
@@ -47,14 +64,37 @@ $(document).ready(function(){
                 uCategory: $("#categoryUser").find("option:selected").val()
             },
             function(data,status){
-                //alert("Data: " + data + "\nStatus: " + status);
-				console.log("New User added -> Data: " + data + "\nStatus: " + status);        
+              console.log("New User added -> Data: " + data + "\nStatus: " + status);        
 			}
         );
 
-        $("#userHolder").load("../Admin/php/getUser.php");
+        $("#userHolder").load("../Admin/php/getUser.php",{idUser: -1});
         $("#nameUser").val("");
         $("#passUser").val("");
     });	
+
+	//Modal window Functions
+	$("#btnCloseEditUser").click(function(){$("#editUser").css("display","none");});
+
+	$("#btnSaveEditUser").click(
+		function(){
+			$.post(
+				"./php/editUser.php",
+				{
+					idUser: $("#idUserLbl").html(),
+					uName: $("#UName").val(),
+					uPass: $("#UPass").val(),
+					uCategory: $("#UCategory").find("option:selected").val()
+				},
+				function(data, status){
+					alert("User edited: " + status);
+					console.log("Status -> " + status + "\nData ->" + data);
+					$("#userHolder").load("../Admin/php/getUser.php",{idUser: -1});
+					$("#editUser").css("display","none");
+				}
+			)
+		}
+	);
+
 });
 

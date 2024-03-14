@@ -1,19 +1,3 @@
-#titleTransLista,#titleClienteLista{
-	text-align: right;
-	padding: 5px;
-	color:black;
-	font-size: 20px;
-}
-
-.littleHolder{
-	height: 200px;
-	text-align: center;
-	border: 4px solid gray;
-	border-radius: 10px;
-	padding: 5px;
-	font-size: 12px;
-}
-
 #showNuevo{
 	padding: 10px;
 	text-align: center;

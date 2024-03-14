@@ -1,6 +1,5 @@
 /*Styler for Work Satation
  Designed by StrataDevp*/
-
 *{
 	box-sizing: border-box;
     padding: 0px;
@@ -9,9 +8,13 @@
 }
 
 html, body {height: 100%;}
+body{
+	background-color: whitesmoke;
+}
 h1{
 	text-align: center;
 	margin: 10px;
+	font-size: 20px;
 }
 
 /*.rowcnt{}*/
@@ -22,8 +25,8 @@ h1{
 }
 [class*="col-"]{
 	float: left;
-	padding: 20 px;
-	border: 0 px solid red;
+	padding: 5px;
+	border: 0px solid red;
 }
 
 #titleBar{
@@ -59,8 +62,15 @@ li{
 }
 /* Add menu's icons*/
 
+.titlePanel{
+	text-align: right;
+	padding: 5px;
+	color:black;
+	font-size: 20px;
+}
+
 .panel{
-	background-color: none;
+	background-color: whitesmoke;
 	display: none;
 	padding: 5px;
 }
@@ -72,13 +82,22 @@ li{
     padding: 10px;
 }
 
-.fullPanel{
+.fullHolder{
     height: 450px;
     text-align: center;
     border: 4px solid gray;
     border-radius: 10px;
     padding: 5px;
     font-size: 12px;
+}
+
+.halfHolder{
+	height: 200px;
+	text-align: center;
+	border: 4px solid gray;
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 12px;
 }
 
 footer{

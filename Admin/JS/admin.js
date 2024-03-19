@@ -96,5 +96,26 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#btnDeleteUser").click(
+		function(){
+			var opt = confirm("Eliminará de forma permanente este Usuario.\n ¿Desea continuar?");
+			if(opt == true){
+				$.post(
+					"./php/deleteUser.php",
+					{
+						idUser: $("#idUserLbl").html(),
+					},
+					function(data, status){
+						alert("User Eliminated");
+						console.log("Status -> " + status + "\nData ->" + data);
+						$("#userHolder").load("../Admin/php/getUser.php",{idUser: -1});
+						$("#editUser").css("display","none");
+					}
+				)
+			}
+			
+		}
+	);
+
 });
 

@@ -159,6 +159,7 @@
 			
 					<div class = "saveCloseBtnContainer">
 						<input class="btnGreen" type="button" value="Guardar" id="btnSaveEditUser">
+						<input class="btnYellow" type="button" value="Eliminar" id="btnDeleteUser">
 						<input class="btnRed" type="button" value="Cerrar" id="btnCloseEditUser">
 					</div>
 					

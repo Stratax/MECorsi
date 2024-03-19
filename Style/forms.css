@@ -100,6 +100,19 @@ legend{
 	color: whitesmoke;
 	background-color:#C03030;
 }
+
+.btnYellow{
+	padding: 6px 12px;
+	color: #C0C000;
+	background-color: whitesmoke;
+	border: 2px solid #C0C000;
+	transition-duration: 0.4s;
+}
+.btnYellow:hover{
+	color: whitesmoke;
+	background-color:#C0c000;
+}
+
 .saveCloseBtnContainer{
 	margin-top: 20px;
 	text-align: right;

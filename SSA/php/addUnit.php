@@ -11,14 +11,13 @@
     $noPoliza = $_POST['noPoliza'];
     $vigPoliza = $_POST['vigPoliza'];
     $manejoEspecial = $_POST['manejoEspecial'];
-    if($_POST['estado']){
-        $estado = "Activo";
-    }else{
-        $estado = "Inactivo";
-    }
     $fechaAlta = date("Y-m-d");
     
-    $sql ="INSERT INTO Unidad (IdTransportadora, Marca, Placas, Tipo, RegSct, AutorizacionSemarnat, VigenciaSemarnat,NoPoliza,VigenciaPoliza,ManejoEspecial,Estatus,FechaAlta) VALUES (
+    echo "SCT ->" . $sct;
+    echo "Semarnat ->" . $semarnat;
+
+    $sql ="INSERT INTO Unidad (
+        IdTransportadora, Marca, Placas, Tipo, RegSct, AutorizacionSemarnat, VigenciaSemarnat,NoPoliza,VigenciaPoliza,ManejoEspecial,Estatus,FechaAlta) VALUES (
          '{$transSel}',
          '{$marca}',
          '{$placas}',
@@ -29,7 +28,7 @@
          '{$noPoliza}',
          '{$vigPoliza}',
          '{$manejoEspecial}',
-         '{$estado}',
+         'Activo',
          '{$fechaAlta}'
      )";
      $stmt = sqlsrv_query($conn,$sql);

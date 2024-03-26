@@ -2,3 +2,16 @@
 	padding: 10px;
 	text-align: center;
 }
+
+#razonSocialE, #razonSocial{
+	width: 300px;
+	margin-bottom: 10px;
+}
+
+#calleE, #calle{
+	width: 250px;
+	
+}
+#nExt,#nInt,#nExtE,#nIntE{
+	width: 60px;
+}

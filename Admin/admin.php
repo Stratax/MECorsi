@@ -147,8 +147,8 @@
 
 						</p>
 					</h1>
-					<input class="form1 rowcnt" type="text" id="UName" >
-					<input class="form1 rowcnt" type="text" id="UPass">
+					<input class="rowcnt" type="text" id="UName" >
+					<input class="rowcnt" type="text" id="UPass">
 					<select id="UCategory">
 						<option value="Administrador">Administrador</option>
 						<option value="Dirección">Dirección</option>

@@ -26,5 +26,6 @@
             
     $stmt = sqlsrv_query($conn,$sql);
     $row = sqlsrv_fetch_array($stmt);
+    
     sqlsrv_close($conn);
 ?>

@@ -32,7 +32,7 @@ CREATE TABLE Unidad(
 	Tipo VARCHAR (20),
 	RegSCT VARCHAR (30),
 	AutorizacionSemarnat VARCHAR(30),
-	VigenciaSemarnat DATE,
+	VigenciaSemarnat VARCHAR(12),
 	NoPoliza VARCHAR(30),
 	VigenciaPoliza VARCHAR(12),
 	ManejoEspecial VARCHAR(40),

@@ -30,4 +30,11 @@
 }
 
 #formEditUser{max-width: 300px;}
+#formAddTrans{max-width: 500px;}
+#formEditTrans{max-width: 500px;}
+#formAddUnit{max-width: 500px;}
+#formEditUnit{max-width: 500px;}
+#formAddOperator{max-width: 500px;}
+#formEditOperator{max-width: 500px;}
+
 

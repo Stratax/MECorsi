@@ -20,7 +20,7 @@
     Telefono2 = '{$tel2}',
     NoLicencia = '{$noLicencia}',
     VigenciaLicencia = '{$vigenciaLicencia}',
-    IdTransportadora = {$transSel} WHERE idOperador = {$idOperator}";
+    IdTransportadora = {$transSel} WHERE IdOperador = {$idOperator}";
         
     $stmt = sqlsrv_query($conn,$sql);
     if( $stmt === false ) {

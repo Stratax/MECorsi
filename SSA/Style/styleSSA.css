@@ -15,3 +15,11 @@
 #nExt,#nInt,#nExtE,#nIntE{
 	width: 60px;
 }
+
+#marca,#marcaE{width: 300px;}
+#placas,#placasE{width: 100px;}
+#tipo,#tipoE{min-width: 200px;}
+#sctUnit,#sctUnitE{width: 200px;}
+#transSel,#transSelE{min-width: 400px;}
+#semarnatUnit,#semarnatUnitE,#noPoliza,#noPolizaE{width: 250px;}
+#manejoEspecial,#manejoEspecialE{width:350px;}

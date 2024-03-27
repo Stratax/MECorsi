@@ -50,7 +50,7 @@
 			<?php
 				echo '<br>Area: SSA';	?>
 				<hr>
-				<a href="../logout.php">Cerrar Sesión</a>
+				<a href="../php/logout.php">Cerrar Sesión</a>
 		</div>
 		
 		<section class="rowcnt">
@@ -137,7 +137,7 @@
 
 				<div class="panel" id="menu3">
 					<div class="rowcnt">
-						<div class ="col-6" style="margin-right:20px">
+						<div class ="col-12">
 							<div class = "titlePanel col-12">
 								Empresas
 								<input type="submit" id ="btnShowAddCorp" value="Nueva" class="buttonEmpresaNueva">
@@ -145,22 +145,16 @@
 							
 							<div class="fullHolder col-12">
 								<div class="rowcnt headerTableList">
-									<div class="col-1">Id</div>
-                					<div class="col-4">Razón social</div>
-                					<div class="col-4">SEMARNAT</div>
-                					<div class="col-2">Options</div>
-        						</div>
+									<div class="col2-1">Id</div>
+                					<div class="col2-4">Razón social</div>
+                					<div class="col2-3">SEMARNAT</div>
+									<div class="col2-5">Dirección</div>
+									<div class="col2-3">Responsable</div>
+									<div class="col2-2">Teléfono</div>
+									<div class="col2-3">Email</div>
+									<div class="col2-3">Capacidad</div>
+                				</div>
 								<div id ="showListaEmpresa"></div>
-							</div>
-						</div>
-						
-						<div class ="col-5">
-							<div class = "titlePanel col-12">
-								<br>
-								Detalle de la empresa: 
-							</div>
-							<div class="fullHolder col-12">
-								<div id ="showListaEmpresaDetalle" class="col-12"></div>
 							</div>
 						</div>
 					</div>
@@ -502,6 +496,39 @@
 				<div class="saveCloseBtnContainer">
 					<input class="btnGreen" type="button" value="Guardar" id="btnSaveCorp">
 					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddCorp">
+				</div>
+			</div>
+		</div>
+
+		<div class = "modalPanel" id = "editCorp">
+			<div class = "modalInnerPanel" id = "formEditCorp">
+				<h1>Empresa: <p id = "idCorpLbl"></p></h1>
+				<fieldset class="rowcnt">
+					<legend>Empresa</legend>
+					<input class="formEditCorp" type="text" id="razonSocialCorpE" placeholder="Razon Social">
+					<input class="formEditCorp" type="text" id="semarnatCorpE" placeholder="SEMARNAT">
+                    <input class="formEditCorp" type="text" pattern="[0-9]*[.,]?[0-9]*" id="capacidadCorpE" placeholder="Cap. de Almacen KG.">
+				</fieldset>	
+				<fieldset class="rowcnt">
+					<legend>Domicilio</legend>
+					<input class="formEditCorp" type="text"id="calleCorpE" placeholder="Calle">
+					<input class="formEditCorp" type="text" id="nExtCorpE" placeholder="N. Ext">
+					<input class="formEditCorp" type="text" id="nIntCorpE" placeholder="N. Int">
+                    <input class="formEditCorp" type="text" id="coloniaCorpE" placeholder="Colonia">
+					<input class="formEditCorp" type="text"  id="delMunCorpE" placeholder="Del/Mun">
+					<input class="formEditCorp" type="text"  id="cpCorpE" placeholder="C.P.">
+					<input class="formEditCorp" type="text"  id="estadoCorpE" placeholder="Estado">
+				</fieldset>
+				<fieldset class="rowcnt">
+					<legend>Contacto</legend>
+					<input class="formEditCorp" type="text" id="responsableCorpE" placeholder="Responsable">
+					<input class="formEditCorp" type="text" id="tel1CorpE" placeholder="Teléfono">
+					<input class="formEditCorp" type="text" id="emailCorpE" placeholder="E-mail">
+				</fieldset>
+				<div class="saveCloseBtnContainer">
+					<input class="btnGreen" type="button" value="Guardar" id="btnSaveEditCorp">
+					<input class="btnYellow" type="button" value="Eliminar" id="btnDeleteEditCorp">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseEditCorp">
 				</div>
 			</div>
 		</div>

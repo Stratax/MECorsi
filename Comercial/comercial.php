@@ -88,9 +88,13 @@
 							<div class="fullHolder col-12">
 								<div class="rowcnt headerTableList">
 									<div class="col2-1">Id</div>
-                					<div class="col2-6">Razón social</div>
-                					<div class="col2-3">NRA</div>
-                					<div class="col2-2">Options</div>
+                					<div class="col2-4">Razón social</div>
+                					<div class="col2-2">RFC</div>
+                					<div class="col2-2">NRA</div>
+									<div class="col2-5">Domicilio</div>
+                					<div class="col2-3">Contacto</div>
+                					<div class="col2-2">Tel</div>
+                					<div class="col2-4">Email</div>
         						</div>
 								<div id ="showLista" class="col-12">
 
@@ -184,6 +188,50 @@
 			</div>
 		</div>
 
+		<div class = "modalPanel" id = editClient>
+			<div class = "modalInnerPanel" id = "formEditClient">
+				
+				<h1>Cliente <p id = "idClientLbl"></p> </h1>
+				<fieldset class="rowcnt">
+					<legend>Cliente</legend>
+					<input class="formEditClient" type="text" id="razonSocialE" placeholder="Razon Social">
+					<input class="formEditClient" type="text" id="rfcE" placeholder="R.F.C.">
+					<input class="formEditClient" type="text" id="nraE" placeholder="NRA">
+					
+				</fieldset>	
+				<fieldset class="rowcnt">
+					<legend>Domicilio</legend>
+					<input class="formEditClient" type="text"id="calleE" placeholder="Calle">
+					<input class="formEditClient" type="text" id="nExtE" placeholder="Número">
+					<input class="formEditClient" type="text" id="coloniaE" placeholder="Colonia">
+					<input class="formEditClient" type="text"  id="delMunE" placeholder="Del/Mun">
+					<input class="formEditClient" type="text"  id="cpE" placeholder="C.P.">
+					<input class="formEditClient" type="text"  id="estadoE" placeholder="Estado">
+				</fieldset>
+				<fieldset class="rowcnt">
+					<legend>Domicilio Fiscal</legend>
+					<input class="formEditClient" type="text"id="calleFE" placeholder="Calle">
+					<input class="formEditClient" type="text" id="nExtFE" placeholder="Número">
+					<input class="formEditClient" type="text" id="coloniaFE" placeholder="Colonia">
+					<input class="formEditClient" type="text"  id="delMunFE" placeholder="Del/Mun">
+					<input class="formEditClient" type="text"  id="cpFE" placeholder="C.P.">
+					<input class="formEditClient" type="text"  id="estadoFE" placeholder="Estado">
+				</fieldset>
+				<fieldset class="rowcnt">
+					<legend>Contacto</legend>
+					<input class="formEditClient" type="text" id="contactoE" placeholder="Responsable">
+					<input class="formEditClient" type="text" id="tel1E" placeholder="Tel 1">
+					<input class="formEditClient" type="text" id="tel2E" placeholder="Tel 2">
+					<input class="formEditClient" type="text" id="emailE" placeholder="E-mail">
+				</fieldset>
+				
+				<div class="saveCloseBtnContainer">
+					<input class="btnGreen" type="button" value="Guardar" id="btnSaveEditClient">
+					<input class="btnYellow" type="button" value="Eliminar" id="btnDeleteEditClient">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseEditClient">
+				</div>
+			</div>
+		</div>
 		
 		
 	</body>

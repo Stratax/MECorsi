@@ -2,41 +2,48 @@
     require("../../php/dbcon.php");
 
     $Empresa = $_POST['Empresa'];
-    if($Empresa!=0){
-        $sql = "SELECT * FROM Empresa WHERE IdEmpresa= {$Empresa}";
-        $stmt = sqlsrv_query($conn,$sql);
-        
-        while($row = sqlsrv_fetch_array($stmt)){
-            echo '<div class="rowcnt">
-            <div class="col-12" style="
-                padding: 8px;
-                background-color: gray;
-                color: white;">'.$row['RazonSocial'].'</div>
-            <div class="col-12">SEMARNAT: '.$row['Semarnat'].'</div>
-            <div class="col-12">Capacidad: '.$row['CapacidadAlmacen'].' kg.</div>
-            <div class="col-12">Domicilio: </div>
-            <div class="col-12">'.$row['Calle'].', N.'.$row['NumeroExt'].
-                                  ', Col. '.$row['Colonia'].'</div>
-            <div class="col-12">'.$row['DelMun'].', '.$row['Estado'].', C.P. '.$row['CP'].'.</div>
-            <div class="col-12">Responsable: '.$row['Responsable'].'</div>
-            <div class="col-6">Tel : '.$row['Telefono'].'</div>
-            <div class="col-6">E-mail: '.$row['Email'].'</div>
-            </div>';
-        }
-    }else{
+    if($Empresa== -1){
         $sql = "SELECT * FROM Empresa";
         $stmt = sqlsrv_query($conn,$sql);
         
         while($row = sqlsrv_fetch_array($stmt)){
-            echo'<div onClick="showEmpresa('.$row['IdEmpresa'].')" class="rowcnt" style="padding: 4px 1px;border-bottom: 1px solid #000">
-                    <div class="col-1">'.$row['IdEmpresa'].'</div>
-                    <div class="col-4">'.$row['RazonSocial'].'</div>
-                    <div class="col-4">'.$row['Semarnat'].'</div>
-                    <div class="col-3">Detalles</div>
+            echo'<div onClick="editEmpresa('.$row['IdEmpresa'].')" class="rowcnt" style="padding: 4px 1px;border-bottom: 1px solid #000">
+                    <div class="col2-1">'.$row['IdEmpresa'].'</div>
+                    <div class="col2-4">'.$row['RazonSocial'].'</div>
+                    <div class="col2-3">'.$row['Semarnat'].'</div>
+                    <div class="col2-5">'.$row['Calle'].' No.'.$row['NumeroExt'].' '.$row['Colonia'].', '.$row['Estado'].'</div>
+                    <div class="col2-3">'.$row['Responsable'].'</div>
+                    <div class="col2-2">'.$row['Telefono'].'</div>
+                    <div class="col2-3">'.$row['Email'].'</div>
+                    <div class="col2-3">'.$row['CapacidadAlmacen'].' KG.</div>
                 </div>';
         }
+    }else{
+        $sql = "SELECT * FROM Empresa WHERE IdEmpresa= {$Empresa}";
+        $stmt = sqlsrv_query($conn,$sql);
+        $row = sqlsrv_fetch_array($stmt);
+
+        $corpObj = new stdClass();
+        $corpObj -> IdEmpresa = $row['IdEmpresa'];
+        $corpObj -> RazonSocial = $row['RazonSocial'];
+        $corpObj -> Semarnat = $row['Semarnat'];
+        $corpObj -> Calle = $row['Calle'];
+        $corpObj -> NumeroExt = $row['NumeroExt'];
+        $corpObj -> NumeroInt = $row['NumeroInt'];
+        $corpObj -> Colonia = $row['Colonia'];
+        $corpObj -> DelMun = $row['DelMun'];
+        $corpObj -> Estado = $row['Estado'];
+        $corpObj -> CP = $row['CP'];
+        $corpObj -> Email = $row['Email'];
+        $corpObj -> Telefono = $row['Telefono'];
+        $corpObj -> Responsable = $row['Responsable'];
+        $corpObj -> FechaAlta = $row['FechaAlta'];
+        $corpObj -> CapacidadAlmacen = $row['CapacidadAlmacen']; 
+        
+        echo json_encode($corpObj);
     }
     
-
     sqlsrv_close($conn);
 ?>
+
+

@@ -50,8 +50,9 @@ select{
 	font-size: 14px;
 	color: gray;
 	background: whitesmoke;
-	min-width: 200px;
+	/*min-width: 200px;
 	max-width: 200px;
+	*/
 	border: none;
 	border-bottom: 2px solid black;
 	transition-duration: 0.5s;
@@ -68,8 +69,8 @@ option{
 	font-size: 14px;
 	color: black;
 	background: none;
-	min-width: 200px;
-	max-width: 200px;
+	/*min-width: 200px;
+	max-width: 200px;*/
 	border-bottom: 2px solid gray ;
 }
 

@@ -1,10 +1,3 @@
-function detalle(idCliente){
-	$("#showListaDetalle").load("../Comercial/php/getClient.php",{Cliente: idCliente});
-}
-function detalleManifiesto(idManifiesto){
-	$("#showManifiestoDetalle").load("../Comercial/php/getManifiestoEntrada.php",{Manifiesto: idManifiesto});
-}
-
 function show(n){
 	switch(n){
 		case 1:
@@ -20,7 +13,7 @@ function show(n){
 			$("#menu2").show();
 			$("li").css("background-color","transparent");
 			$("#m_Cliente").css("background-color","#3080C0");
-			$("#showLista").load("../Comercial/php/getClient.php",{Cliente: 0});
+			$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
         break;
 		case 3:
 			$("#title").text("Manifiesto de Entrada")
@@ -33,6 +26,42 @@ function show(n){
         break;
 		
 	}
+}
+
+function editClient(idClient1){
+	$("#idClientLbl").html(idClient1);
+	$("#editClient").css("display","flex");
+	console.log(idClient1);
+
+	$.post("./php/getClient.php",
+		{
+			Cliente: idClient1,	
+		},
+		function(data,status){
+			console.log(status+data.Email);
+
+			$("#razonSocialE").val(data.RazonSocial);
+			$("#rfcE").val(data.RFC);
+			$("#nraE").val(data.NRA);
+			$("#calleE").val(data.Calle);
+			$("#nExtE").val(data.Numero);
+			$("#coloniaE").val(data.Colonia);
+			$("#delMunE").val(data.DelMun);
+			$("#cpE").val(data.CP);
+			$("#estadoE").val(data.Estado);
+			$("#calleFE").val(data.CalleFiscal);
+			$("#nExtFE").val(data.NumeroFiscal);
+			$("#coloniaFE").val(data.ColoniaFiscal);
+			$("#delMunFE").val(data.DelMunFiscal);
+			$("#cpFE").val(data.CPFiscal);
+			$("#estadoFE").val(data.EstadoFiscal);
+			$("#contactoE").val(data.Contacto);
+			$("#tel1E").val(data.Tel1);
+			$("#tel2E").val(data.Tel2);
+			$("#emailE").val(data.Email);
+		},"json"
+
+	);
 }
 
 $(document).ready(function(){
@@ -78,13 +107,70 @@ $(document).ready(function(){
 					console.log(data+status);
 					alert("Cliente guardada con exito");
 					$(".formAddClient").val("");
-					$("#showLista").load("../Comercial/php/getClient.php",{idTrans: -1});
+					$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
 						
 				}
 			);
 		}
 	);
 
+	$("#btnSaveEditClient").click(
+		function(){
+			$.post(
+				"./php/editClient.php",
+				{
+					Cliente: $("#idClientLbl").html(),
+					razonSocial: $("#razonSocialE").val(),
+					rfc: $("#rfcE").val(),
+					nra: $("#nraE").val(),
+					calle: $("#calleE").val(),
+					nExt: $("#nExtE").val(),
+					colonia: $("#coloniaE").val(),
+					delMun: $("#delMunE").val(),
+					cp: $("#cpE").val(),
+					estado: $("#estadoE").val(),
+					calleF: $("#calleFE").val(),
+					nExtF: $("#nExtFE").val(),
+					coloniaF: $("#coloniaFE").val(),
+					delMunF: $("#delMunFE").val(),
+					cpF: $("#cpFE").val(),
+					estadoF: $("#estadoFE").val(),
+					contacto: $("#contactoE").val(),
+					tel1: $("#tel1E").val(),
+					tel2: $("#tel2E").val(),	
+					email: $("#emailE").val()
+				},
+				function(data,status){
+					console.log(data+status);
+					alert("Cliente guardada con exito");
+					$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
+				}
+			);
+		}
+	);
+
+	$("#btnDeleteEditClient").click(
+		function(){
+			var opt = confirm("Eliminará de forma permanente este Cliente al igual\n que toda lainformación relacionada a este Cliente\n¿Desea continuar?");
+			if(opt){
+				$.post( "./php/deleteClient.php",
+					{
+						Cliente : $("#idClientLbl").html(),
+					},
+					function(data,status){
+						alert("Cliente Eliminado");
+						console.log(data+status);
+						$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
+						$("#editClient").css("display","none");
+					}	
+				);
+
+			}
+		
+		}
+	);
+
 	$("#btnCloseAddClient").click(function(){$("#addClient").css("display","none");});
+	$("#btnCloseEditClient").click(function(){$("#editClient").css("display","none");});
     	
 });

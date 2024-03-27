@@ -1,14 +1,10 @@
 
-function showEmpresa(x){
-	$("#showListaEmpresaDetalle").load("../SSA/php/getEmpresa.php",{Empresa: x});
-}
 function showOpUnit(x){
     $('.transRow').css("background-color","whitesmoke");
 	$('#tra'+x).css("background-color","#aaccFF");
     $("#showListaUn").load("../SSA/php/getUnit.php",{Transportadora: x, Unit : -1});
     $("#showListaOp").load("../SSA/php/getOperator.php",{Transportadora: x, Operator : -1});
 }
-
 function show(n){
 	switch(n){
 		case 1:
@@ -32,22 +28,17 @@ function show(n){
 			$("#menu3").show();
 			$("li").css("background-color","transparent");
 			$("#m_Empresa").css("background-color","#3080C0");
-			$("#showListaEmpresa").load("../SSA/php/getEmpresa.php",{Empresa: 0});
+			$("#showListaEmpresa").load("../SSA/php/getEmpresa.php",{Empresa: -1});
 		break;
 		
 	}
 }
-
 function editTrans(idTrans1){
-	
 	$("#idTransLbl").html(idTrans1);
 	$("#editTransport").css("display","flex");
-	
 	$.post(
 		"./php/getTransportadora.php",
-		{
-			idTrans: idTrans1,
-		},
+		{idTrans: idTrans1,},
 		function(data,status){
 			console.log(status);
 			$("#razonSocialE").val(data.RazonSocial);
@@ -62,11 +53,9 @@ function editTrans(idTrans1){
 			$("#telE").val(data.Telefono);
 			$("#sctE").val(data.RegSCT);
 			$("#semarnatE").val(data.AutorizacionSemarnat);
-
 		},"json"
 	);
 }
-
 function editUnit(idUnit1, transportadora){
 	
 	$("#idUnitLbl").html(idUnit1);
@@ -96,7 +85,6 @@ function editUnit(idUnit1, transportadora){
 	);
 	
 }
-
 function editOperator(idOperator1, transportadora){
 	
 	$("#editOperator").css("display","flex");
@@ -109,9 +97,7 @@ function editOperator(idOperator1, transportadora){
 			Operator: idOperator1,
 		},
 		function(data,status){
-			
 			console.log(status);
-
 			$("#nombreE").val(data.Nombre);
 			$("#apellidoPE").val(data.ApellidoP);
 			$("#apellidoME").val(data.ApellidoM);
@@ -125,8 +111,37 @@ function editOperator(idOperator1, transportadora){
 	
 }
 
+function editEmpresa(idEmpresa1){
+	$("#idCorpLbl").html(idEmpresa1);
+	$("#editCorp").css("display","flex");
+	
+	$.post("./php/getEmpresa.php",
+		{Empresa : idEmpresa1,},
+		function(data,status){
+
+			$("#razonSocialCorpE").val(data.RazonSocial),
+			$("#semarnatCorpE").val(data.Semarnat),
+			$("#capacidadCorpE").val(data.CapacidadAlmacen),
+			$("#calleCorpE").val(data.Calle),
+			$("#nExtCorpE").val(data.NumeroExt),
+			$("#nIntCorpE").val(data.NumeroInt),
+			$("#coloniaCorpE").val(data.Colonia),
+			$("#delMunCorpE").val(data.DelMun),
+			$("#cpCorpE").val(data.CP),
+			$("#estadoCorpE").val(data.Estado),
+			$("#responsableCorpE").val(data.Responsable),
+			$("#tel1CorpE").val(data.Telefono),
+			$("#emailCorpE").val(data.Email),
+
+			console.log(status);
+		},"json"
+
+	);
+}
+
+
 $(document).ready(function(){
-	show(2);
+	show(1);
 
 	$("#userIcon").click(function(){$("#userDiv").slideToggle(200);});
     $("#m_Home").click(function(){show(1);});
@@ -167,8 +182,7 @@ $(document).ready(function(){
 						
 				}
 			);
-		}
-	);
+		});
 
 	$("#btnSaveAddUnit").click(
 		function(){
@@ -246,6 +260,7 @@ $(document).ready(function(){
 					console.log(data + status);
 					$(".formAddCorp").val("");
 					alert("Empresa agregada Correctamente");
+					$("#showListaEmpresa").load("../SSA/php/getEmpresa.php",{Empresa: -1});
 				}
 			);
 		}
@@ -305,8 +320,25 @@ $(document).ready(function(){
 						console.log("Status -> " + status + "\nData ->" + data);
 						$("#editOperator").css("display","none");
 					}
-				)
+				);
 			}	
+		}
+	);
+
+	$("#btnDeleteEditCorp").click(
+		function(){
+			var opt = confirm("Eliminará de forma permanente esta Empresa y la información relacionada a ella.\n ¿Desea Continuar?");
+			if(opt){
+				$.post("./php/deleteCorp.php",
+					{Empresa : $("#idCorpLbl").html(),},
+					function(data, status){
+						$("#showListaEmpresa").load("../SSA/php/getEmpresa.php",{Empresa: -1});
+						alert("Empresa eliminada");
+						console.log(status + data);
+						$("#editCorp").css("display","none");
+					}
+				);
+			}
 		}
 	);
 
@@ -389,6 +421,34 @@ $(document).ready(function(){
 			);
 		}
 	);
+
+	$("#btnSaveEditCorp").click(
+		function(){
+			$.post("./php/editCorp.php",
+				{
+					idEmpresa : $("#idCorpLbl").html(),
+					razonSocial: $("#razonSocialCorpE").val(),
+					semarnat: $("#semarnatCorpE").val(),
+					capacidad: $("#capacidadCorpE").val(),
+					calle: $("#calleCorpE").val(),
+					nExt: $("#nExtCorpE").val(),
+					nInt: $("#nIntCorpE").val(),
+					colonia: $("#coloniaCorpE").val(),
+					delMun: $("#delMunCorpE").val(),
+					cp: $("#cpCorpE").val(),
+					estado: $("#estadoCorpE").val(),
+					responsable: $("#responsableCorpE").val(),
+					tel1: $("#tel1CorpE").val(),
+					email: $("#emailCorpE").val()
+				},
+				function(data,status){
+					console.log(data + status);
+					alert("Editado con exito");
+					$("#showListaEmpresa").load("../SSA/php/getEmpresa.php",{Empresa: -1});
+				}
+			);
+		}
+	);
 	
 		
 	$("#btnCloseAddTrans").click(function(){$("#addTransport").css("display","none");});
@@ -398,5 +458,5 @@ $(document).ready(function(){
 	$("#btnCloseAddOperator").click(function(){$("#addOperator").css("display","none");});
 	$("#btnCloseEditOperator").click(function(){$("#editOperator").css("display","none");});
 	$("#btnCloseAddCorp").click(function(){$("#addCorp").css("display","none");});
-
+	$("#btnCloseEditCorp").click(function(){$("#editCorp").css("display","none");});
 });

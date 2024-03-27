@@ -21,5 +21,6 @@
         VALUES ('{$razonSocial}','{$semarnat}','{$calle}','{$nExt}','{$nInt}','{$colonia}','{$delMun}','{$estado}','{$cp}','{$email}','{$tel1}','{$responsable}','{$fechaAlta}','{$capacidad}')";
     $stmt = sqlsrv_query($conn,$sql);
     $row = sqlsrv_fetch_array($stmt);
+    
     sqlsrv_close($conn);
 ?>

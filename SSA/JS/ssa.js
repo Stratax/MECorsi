@@ -99,33 +99,29 @@ function editUnit(idUnit1, transportadora){
 
 function editOperator(idOperator1, transportadora){
 	
-	alert(idOperator1 + transportadora);
-	/*
-	$("#idOperatorLbl").html(idOperator1);
 	$("#editOperator").css("display","flex");
+	$("#idOperatorLbl").html(idOperator1);
 	
 	$.post(
-		"./php/getUnit.php",
+		"./php/getOperator.php",
 		{
 			Transportadora: transportadora, 
 			Operator: idOperator1,
 		},
 		function(data,status){
 			
-			$("#marcaE").val(data.Marca);
-			$("#placasE").val(data.Placas);
-			$("#tipoE option[value ='"+data.Tipo+"']").prop("selected",true);
-			$("#sctUnitE").val(data.RegSCT);
-			$("#semarnatUnitE").val(data.AutorizacionSemarnat);
-			$("#vigSemarnatE").val(data.VigenciaSemarnat);
-			$("#noPolizaE").val(data.NoPoliza);
-			$("#vigPolizaE").val(data.VigenciaPoliza);
-			$("#manejoEspecialE").val(data.ManejoEspecial);
-			$("#transSelE option[value ="+data.IdTransportadora+"]").prop("selected",true);
-			
+			console.log(status);
 
+			$("#nombreE").val(data.Nombre);
+			$("#apellidoPE").val(data.ApellidoP);
+			$("#apellidoME").val(data.ApellidoM);
+			$("#transSelOperatorE option[value ='"+data.IdTransportadora+"']").prop("selected",true);
+			$("#tel1E").val(data.Telefono1);
+			$("#tel2E").val(data.Telefono2);
+			$("#noLicenciaE").val(data.NoLicencia);
+			$("#vigenciaLicenciaE").val(data.VigenciaLicencia);
 		},"json"
-	);*/
+	);
 	
 }
 
@@ -141,11 +137,8 @@ $(document).ready(function(){
     $("#btnShowAddTrans").click(function(){$("#addTransport").css("display","flex");});
 	$("#btnShowAddUnit").click(function(){$("#addUnit").css("display","flex");});
 	$("#btnShowAddOperator").click(function(){$("#addOperator").css("display","flex");});
-	$("#buttonEmpresaNueva").click(function(){
-            var myw = window.open("../SSA/Plantillas/addEmpresaPop.php", "addEmpresa","width=400,height=450,left=200,top=30");
-        }
-    );
-
+	$("#btnShowAddCorp").click(function(){$("#addCorp").css("display","flex")});
+	
 	// Modal window Functions
 
 	$("#btnSaveAddTrans").click(
@@ -229,6 +222,35 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#btnSaveCorp").click(
+		function(){
+			$.post(
+				"./php/addCorp.php",
+				{
+					razonSocial: $("#razonSocialCorp").val(),
+					semarnat: $("#semarnatCorp").val(),
+					capacidad: $("#capacidadCorp").val(),
+					calle: $("#calleCorp").val(),
+					nExt: $("#nExtCorp").val(),
+					nInt: $("#nIntCorp").val(),
+					colonia: $("#coloniaCorp").val(),
+					delMun: $("#delMunCorp").val(),
+					cp: $("#cpCorp").val(),
+					estado: $("#estadoCorp").val(),
+					responsable: $("#responsableCorp").val(),
+					tel1: $("#tel1Corp").val(),
+					email: $("#emailCorp").val()
+				},
+				function(data,status){
+					
+					console.log(data + status);
+					$(".formAddCorp").val("");
+					alert("Empresa agregada Correctamente");
+				}
+			);
+		}
+	);
+
 	$("#btnDeleteEditTrans").click(
 		function(){
 			var opt = confirm("Eliminará de forma permanente esta Transportadora al igual\n que toda la"+ 
@@ -263,6 +285,25 @@ $(document).ready(function(){
 						alert("Unidad Eliminada");
 						console.log("Status -> " + status + "\nData ->" + data);
 						$("#editUnit").css("display","none");
+					}
+				)
+			}	
+		}
+	);
+
+	$("#btnDeleteEditOperator").click(
+		function(){
+			var opt = confirm("Eliminará de forma permanente este Operador y la información relacionada a el.\n ¿Desea continuar?");
+			if(opt == true){
+				$.post(
+					"./php/deleteOperator.php",
+					{
+						idOperator: $("#idOperatorLbl").html(),
+					},
+					function(data, status){
+						alert("Operador Eliminado");
+						console.log("Status -> " + status + "\nData ->" + data);
+						$("#editOperator").css("display","none");
 					}
 				)
 			}	
@@ -325,6 +366,29 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#btnEditOperator").click(
+		function(){
+			$.post(
+				"./php/editOperator.php",
+				{
+					idOperator: $("#idOperatorLbl").html(),
+					nombre: $("#nombreE").val(),
+					apellidoP: $("#apellidoPE").val(),
+					apellidoM: $("#apellidoME").val(),
+					transSel: $("#transSelOperatorE").find("option:selected").val(),
+					tel1: $("#tel1E").val(),
+					tel2: $("#tel2E").val(),
+					noLicencia: $("#noLicenciaE").val(),
+					vigenciaLicencia: $("#vigenciaLicenciaE").val(),
+				},
+				function(data,status){
+					
+					console.log(data + status);
+					alert("Unidad:"+$("#idUnitLbl").html()+" Editada Correctamente");
+				}
+			);
+		}
+	);
 	
 		
 	$("#btnCloseAddTrans").click(function(){$("#addTransport").css("display","none");});
@@ -332,9 +396,7 @@ $(document).ready(function(){
 	$("#btnCloseAddUnit").click(function(){$("#addUnit").css("display","none");});
 	$("#btnCloseEditUnit").click(function(){$("#editUnit").css("display","none");});
 	$("#btnCloseAddOperator").click(function(){$("#addOperator").css("display","none");});
-	
-	
+	$("#btnCloseEditOperator").click(function(){$("#editOperator").css("display","none");});
+	$("#btnCloseAddCorp").click(function(){$("#addCorp").css("display","none");});
 
-	
-	
 });

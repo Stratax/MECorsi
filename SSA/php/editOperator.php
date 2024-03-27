@@ -2,7 +2,7 @@
 
     require("../../php/dbcon.php");
 
-    $idOperador = $_POST['idOperador'];
+    $idOperator = $_POST['idOperator'];
     $nombre = $_POST['nombre'];
     $apellidoP = $_POST['apellidoP'];
     $apellidoM = $_POST['apellidoM'];
@@ -20,7 +20,7 @@
     Telefono2 = '{$tel2}',
     NoLicencia = '{$noLicencia}',
     VigenciaLicencia = '{$vigenciaLicencia}',
-    idTransportadora = {$transSel} WHERE idOperador = {$idOperador}";
+    IdTransportadora = {$transSel} WHERE idOperador = {$idOperator}";
         
     $stmt = sqlsrv_query($conn,$sql);
     if( $stmt === false ) {

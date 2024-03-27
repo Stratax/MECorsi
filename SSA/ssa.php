@@ -10,8 +10,8 @@
 		session_destroy();
 		header("Location: ../index.php");
 	}
-
 ?>
+
 <!DOCTYPE html>
 	<html lang="es">
 	<head>
@@ -64,7 +64,9 @@
 			
 			<div class="col-2">&nbsp</div>
 			<section class="col-10">
-				<!-- **** Inicio **** -->
+<!--**********************************************************-->
+<!-------              **** INICIO ****         -------->
+<!--**********************************************************-->
 				<div class="panel" id="menu1">					
 				</div>
 <!--**********************************************************-->
@@ -126,54 +128,53 @@
 
 							</div>	
 						</div>
-						
-						
-						
-						
 					</div>
-					
-					
 				</div>
 
-				<!-- **** EMPRESA ****-->
+<!--**********************************************************-->
+<!-------              **** EMPRESA ****         -------->
+<!--**********************************************************-->
+
 				<div class="panel" id="menu3">
 					<div class="rowcnt">
-						<div class ="col-6">
-							<div id="titleClienteLista" class = "col-12">
+						<div class ="col-6" style="margin-right:20px">
+							<div class = "titlePanel col-12">
 								Empresas
-								<input type="submit" id ="buttonEmpresaNueva" value="Nueva" class="buttonEmpresaNueva">
+								<input type="submit" id ="btnShowAddCorp" value="Nueva" class="buttonEmpresaNueva">
 							</div>
-							<div class="fullPanel col-12">
-								<div class="col-12 headerTableList">
+							
+							<div class="fullHolder col-12">
+								<div class="rowcnt headerTableList">
 									<div class="col-1">Id</div>
                 					<div class="col-4">Razón social</div>
                 					<div class="col-4">SEMARNAT</div>
                 					<div class="col-2">Options</div>
         						</div>
-								<div id ="showListaEmpresa" class="col-12"></div>
+								<div id ="showListaEmpresa"></div>
 							</div>
 						</div>
-						<div class="col-1" style="height: 500px"></div>
+						
 						<div class ="col-5">
-							<div id="titleClienteLista" class = "col-12">
+							<div class = "titlePanel col-12">
+								<br>
 								Detalle de la empresa: 
 							</div>
-							<div class="fullPanel col-12">
+							<div class="fullHolder col-12">
 								<div id ="showListaEmpresaDetalle" class="col-12"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				
-				
-
 			</section> 
 		</section>
+
 		<footer>
 			<p>Design by STRDEV &copy</p>
 		</footer>
 		
+
+
+
 		<!-- **** Modal windows **** -->
 		<div class = "modalPanel" id = addTransport>
 			<div class = "modalInnerPanel" id = "formAddTrans">
@@ -429,13 +430,13 @@
 		<div class = "modalPanel" id = "editOperator">
 			<div class = "modalInnerPanel" id = "formEditOperator">
 				
-			<h1> Operador: <p id = "idOperadorLbl"></p></h1>
+			<h1> Operador: <p id = "idOperatorLbl"></p></h1>
 				<fieldset class="rowcnt">
 					<legend>Información Personal</legend>
-					<input class="formAddOperator" type="text" placeholder="Nombre(s) " id="nombre">
-					<input class="formAddOperator" type="text"id="apellidoP" placeholder="Apellido Paterno">
-					<input class="formAddOperator" type="text" id="apellidoM" placeholder="Apellido Materno">
-					<select id="transSelOperator" class="formAddOperator">
+					<input class="formAddOperator" type="text" placeholder="Nombre(s) " id="nombreE">
+					<input class="formAddOperator" type="text"id="apellidoPE" placeholder="Apellido Paterno">
+					<input class="formAddOperator" type="text" id="apellidoME" placeholder="Apellido Materno">
+					<select id="transSelOperatorE" class="formAddOperator">
 						<option value="-1" selected>Transportadora...</option>
 						<?php
 							require("../php/dbcon.php");
@@ -454,23 +455,56 @@
 				</fieldset>
 				<fieldset class="rowcnt">
 					<legend>Contacto</legend>
-					<input class="formAddOperator" type="text" id="tel1" placeholder="Teléfono">
-					<input class="formAddOperator" type="text" id="tel2" placeholder="Teléfono(2)">
+					<input class="formAddOperator" type="text" id="tel1E" placeholder="Teléfono">
+					<input class="formAddOperator" type="text" id="tel2E" placeholder="Teléfono(2)">
 				</fieldset>
 				<fieldset class="rowcnt">
 					<legend>Permiso y vigencia</legend>
-					<input class="formAddOperator" type="text"  id="noLicencia" placeholder="No de licencia">
-					<input class="formAddOperator" type="date"  id="vigenciaLicencia">
+					<input class="formAddOperator" type="text"  id="noLicenciaE" placeholder="No de licencia">
+					<input class="formAddOperator" type="date"  id="vigenciaLicenciaE">
 				</fieldset>
 				
 				<div class="saveCloseBtnContainer rowcnt">
-					<input class="btnGreen" type="button" value="Guardar" id="btnSaveAddOperator">
-					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddOperator"></div>
+					<input class="btnGreen" type="button" value="Guardar" id="btnEditOperator">
+					<input class="btnYellow" type="button" value="Eliminar" id="btnDeleteEditOperator">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseEditOperator"></div>
 				</div>
         	
 		</div>
 
-
+		<div class = "modalPanel" id = "addCorp">
+			<div class = "modalInnerPanel" id = "formAddCorp">
+				<h1>Nueva Empresa</h1>
+				<fieldset class="rowcnt">
+					<legend>Empresa</legend>
+					<input class="formAddCorp" type="text" id="razonSocialCorp" placeholder="Razon Social">
+					<input class="formAddCorp" type="text" id="semarnatCorp" placeholder="SEMARNAT">
+                    <input class="formAddCorp" type="text" pattern="[0-9]*[.,]?[0-9]*" id="capacidadCorp" placeholder="Cap. de Almacen KG.">
+					
+					
+				</fieldset>	
+				<fieldset class="rowcnt">
+					<legend>Domicilio</legend>
+					<input class="formAddCorp" type="text"id="calleCorp" placeholder="Calle">
+					<input class="formAddCorp" type="text" id="nExtCorp" placeholder="N. Ext">
+					<input class="formAddCorp" type="text" id="nIntCorp" placeholder="N. Int">
+                    <input class="formAddCorp" type="text" id="coloniaCorp" placeholder="Colonia">
+					<input class="formAddCorp" type="text"  id="delMunCorp" placeholder="Del/Mun">
+					<input class="formAddCorp" type="text"  id="cpCorp" placeholder="C.P.">
+					<input class="formAddCorp" type="text"  id="estadoCorp" placeholder="Estado">
+				</fieldset>
+				<fieldset class="rowcnt">
+					<legend>Contacto</legend>
+					<input class="formAddCorp" type="text" id="responsableCorp" placeholder="Responsable">
+					<input class="formAddCorp" type="text" id="tel1Corp" placeholder="Teléfono">
+					<input class="formAddCorp" type="text" id="emailCorp" placeholder="E-mail">
+				</fieldset>
+				<div class="saveCloseBtnContainer">
+					<input class="btnGreen" type="button" value="Guardar" id="btnSaveCorp">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddCorp">
+				</div>
+			</div>
+		</div>
 	</body>
 	
 </html>

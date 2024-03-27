@@ -30,16 +30,21 @@
             </div>';
         }
     }else{
-        $sql = "SELECT IdCliente, RazonSocial, NRA FROM Cliente";
+        $sql = "SELECT * FROM Cliente";
         $stmt = sqlsrv_query($conn,$sql);
 
         while($row = sqlsrv_fetch_array($stmt)){
-            echo '<div onClick="detalle('.$row['IdCliente'].')" class="rowcnt" style="padding: 4px 1px;border-bottom: 1px solid black">
-            <div class="col-1">'.$row['IdCliente'].'</div>
-            <div class="col-6">'.$row['RazonSocial'].'</div>
-            <div class="col-3">'.$row['NRA'].'</div>
-            <div class="col-2"><input type="button" id ="buttonClienteEdit" value="Editar" class="buttonClienteNuevo"></div>
-            </div>';
+            echo '<div onClick="detalle('.$row['IdCliente'].')" class="rowcnt" style="font-size:11px;border-bottom: 1px solid black">
+            <div class="col2-1">'.$row['IdCliente'].'</div>
+            <div class="col2-5">'.$row['RazonSocial'].'</div>
+            <div class="col2-2">'.$row['RFC'].'</div>
+            <div class="col2-2">'.$row['NRA'].'</div>
+            <div class="col2-5">'.$row['Calle'].' No. '.$row['Numero'].'</div>
+            <div class="col2-2">'.$row['Colonia'].'</div>
+            <div class="col2-2">'.$row['Contacto'].'</div>
+            <div class="col2-2">'.$row['Tel1'].'</div>
+            <div class="col2-3">'.$row['Email'].'</div>
+        </div>';
         }    
     }
     

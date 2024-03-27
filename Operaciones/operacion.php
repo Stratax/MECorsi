@@ -10,17 +10,20 @@
 		session_destroy();
 		header("Location: ../index.php");
 	}
-
 ?>
 <!DOCTYPE html>
 	<html lang="es">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
 		<script src="../JS/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="JS/operacion.js"></script>
-		<link rel="stylesheet" href="../Style/global.css" />
-		<link rel="stylesheet" href="Style/styleOperacion.css" />
+		
+		<link rel="stylesheet" href="../Style/global.css"/>
+		<link rel="stylesheet" href="../Style/modal.css"/>
+		<link rel="stylesheet" href="../Style/forms.css"/>
+		<link rel="stylesheet" href="Style/styleOperacion.css"/>
 		<title>Operaciones</title>
 	</head>
 	
@@ -31,7 +34,9 @@
 				<div class="col-2" id="logo">
 					<img class="" src="../IMG/Logo_Corsi.png" width="112" height ="40">
 				</div>	
-				<div class="col-8" id="title"></div>
+				<div class="col-8" id="title">
+
+				</div>
 				<div class="col-2" id="titleMenu">
 					<img id="userIcon" src="../IMG/user.png" width="25" height ="25">
 				</div>
@@ -57,15 +62,20 @@
 			
 			<div class="col-2">&nbsp</div>
 			<section class="col-10">
-				<!-- **** Inicio **** -->
+
+<!--**********************************************************-->
+<!-------              **** INICIO ****         -------->
+<!--**********************************************************-->				
 				<div class="panel" id="menu1">
 					Inicio
 				</div>
+<!--**********************************************************-->
+<!-------        **** MANIFIESTO DE ENTRADA****         -------->
+<!--**********************************************************-->
 
-				<!-- **** Manifiesto de Entrada  **** -->
 				<div class="panel" id="menu2"> 
-				<div class="rowcnt">
-						<div class="col-6">
+					<div class="rowcnt">
+						<div class="col-6" style="margin-right:15px;">
 							<div id="titleClienteLista" class = "col-12">
 								Manifiesto 
 								<input type="submit" id ="buttonManifiestoNuevo" value="Nuevo" class="buttonManifiestoNuevo">
@@ -80,7 +90,6 @@
 								<div id ="showManifiesto" class="col-12"></div>
 							</div>
 						</div>
-						<div class="col-1" style="height: 500px"></div>
 						<div class ="col-5">
 							<div id="titleClienteLista" class = "col-12">
 								Detalle del Manifiesto: 

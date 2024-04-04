@@ -16,11 +16,11 @@ function show(n){
 			$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
         break;
 		case 3:
-			$("#title").text("Manifiesto de Entrada")
+			$("#title").text("Orden de servicio")
 			$(".panel").hide(); 
 			$("#menu3").show();
 			$("li").css("background-color","transparent");
-			$("#m_ManEnt").css("background-color","#3080C0");
+			$("#m_OrdServ").css("background-color","#3080C0");
 			$("#showManifiesto").load("../Comercial/php/getManifiestoEntrada.php",{Manifiesto: 'x'});
 
         break;
@@ -70,7 +70,7 @@ $(document).ready(function(){
     
 	$("#m_Home").click(function(){show(1);});
 	$("#m_Cliente").click(function(){show(2);});
-	$("#m_ManEnt").click(function(){show(3);});
+	$("#m_OrdServ").click(function(){show(3);});
 
 	$("#btnAddClient").click(
 		function(){

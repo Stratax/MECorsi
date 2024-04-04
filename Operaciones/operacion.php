@@ -47,7 +47,7 @@
 			<?php
 				echo '<br>Area: Operaciones';	?>
 				<hr>
-				<a href="../logout.php">Cerrar Sesión</a>
+				<a href="../php/logout.php">Cerrar Sesión</a>
 		</div>
 		
 		<section class="rowcnt">
@@ -72,15 +72,14 @@
 <!--**********************************************************-->
 <!-------        **** MANIFIESTO DE ENTRADA****         -------->
 <!--**********************************************************-->
-
 				<div class="panel" id="menu2"> 
 					<div class="rowcnt">
 						<div class="col-6" style="margin-right:15px;">
-							<div id="titleClienteLista" class = "col-12">
+							<div class="titlePanel col-12">
 								Manifiesto 
-								<input type="submit" id ="buttonManifiestoNuevo" value="Nuevo" class="buttonManifiestoNuevo">
+								<input type="submit" id ="btnshowAddManifest" value="Nuevo" class="buttonManifiestoNuevo">
 							</div>
-							<div class="clienteHolder col-12">
+							<div class="fullholder col-12">
 								<div class="col-12 hTListCliente">
 									<div class="col-2">Manifiesto</div>
                 					<div class="col-4">Cliente</div>

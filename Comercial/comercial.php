@@ -59,7 +59,7 @@
 				<ul id="mainMenu">
 					<li id="m_Home">Inicio</li>
 					<li id="m_Cliente">Clientes</li>
-					<li id="m_ManEnt">Manifiestos de Entrada</li>
+					<li id="m_OrdServ">Orden de Servicio</li>
 				</ul>						
 			</nav>
 			
@@ -69,6 +69,7 @@
 <!--**********************************************************-->
 <!-------              **** INICIO ****         -------->
 <!--**********************************************************-->			
+				
 				<div class="panel" id="menu1">
 					Inicio
 				</div>

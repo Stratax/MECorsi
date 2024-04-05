@@ -231,27 +231,21 @@
 
 		<div class = "modalPanel" id = addService>
 			<div class = "modalInnerPanel" id = "formAddService">
-				<?php
-					require("../php/dbcon.php");
-					$sql ="SELECT Valor FROM Consecutivo WHERE Tabla ='OrdenServicio'";
-					$stmt = sqlsrv_query($conn,$sql);
-					$row = sqlsrv_fetch_array($stmt);
-					$consecutivo = $row['Valor'] + 1;
-					$sql2 = "UPDATE Consecutivo SET Valor = {$consecutivo} WHERE Tabla = 'ManifiestosEntrada'";
-					$stmt = sqlsrv_query($conn,$sql2);
-					sqlsrv_close($conn);
-				?><!-- Move to a rest service -->
 				
-				<h1>Orden de Servicio: 
-					<?php
-						$idManifiesto = 'OS'.str_pad($consecutivo,4,"0",STR_PAD_LEFT)."/".Date('y');
-						echo '<div id="idManifiestoMan" value='.$idManifiesto.'>'.$idManifiesto.'</div>';
-					?>
-					
-				</h1>
+				<div class = "consecutivoOS col-6">
+					Orden de Servicio: 
+					<div id="idService" style = "color:red"></div>
+				</div>
+				<div class = "askDate col-6">
+					Fecha de Solicitud<br> <input type="date">
+				</div>
+				
 				<fieldset class="rowcnt">
-					<legend>Cliente</legend>
-					<select id="clienteMan" class="col2-8">
+					<legend>Generador</legend>
+					<div class = "col2-8 gatherDate">
+						Recolección: <input type="date">
+					</div>
+					<select id="clienteMan">
 						<option value="-1" selected>Cliente</option>
 						<?php
 							require("../php/dbcon.php");
@@ -265,42 +259,51 @@
 							sqlsrv_close($conn);
 						?>
 					</select>
-					<div id="datosCliente" class="rowcnt"></div>
+					<div id="datosCliente" class="col2-24">_<br>_</div>
+					<select id="idMan">
+						<option value="-1" selected>Manifiesto</option>
+					</select>
 					
 				</fieldset>	
 				<fieldset class="rowcnt">
-					<legend>Transportadora</legend>
-						<select id="transportadoraMan" class="col2-11">
+					<legend>Transportista</legend>
+						<select id="transportadoraMan">
 							<option value = "-1" selected>Transportadora</option>
 					
-					<?php
-						require("../php/dbcon.php");
-						$sql = "SELECT IdTransportadora, RazonSocial FROM Transportadora";
-						$stmt = sqlsrv_query($conn,$sql);
-						
-						while($row = sqlsrv_fetch_array($stmt)){
-							$idTransportadora = $row['IdTransportadora'];
-							$razonSocial = $row['RazonSocial'];
-							echo '<option value="'.$idTransportadora.'">'.$razonSocial.'</option>';
-						}
-						sqlsrv_close($conn);
-					?>
-					</select>						
-					<select id="operadorMan" class="col2-11">
+								<?php
+									require("../php/dbcon.php");
+									$sql = "SELECT IdTransportadora, RazonSocial FROM Transportadora";
+									$stmt = sqlsrv_query($conn,$sql);
+									
+									while($row = sqlsrv_fetch_array($stmt)){
+										$idTransportadora = $row['IdTransportadora'];
+										$razonSocial = $row['RazonSocial'];
+										echo '<option value="'.$idTransportadora.'">'.$razonSocial.'</option>';
+									}
+									sqlsrv_close($conn);
+								?>
+
+						</select>
+
+					<select id="operadorMan">
 						<option value="-1">Operador</option>
 					</select>
-					<select id="unidadMan1" class="col2-6">
+
+					<select id="unidadMan1">
 						<option value="-1">Unidad 1</option>
 					</select>
-					<select id="unidadMan2" class="col2-6">
+					<select id="unidadMan2">
 						<option value="-1">Unidad 2</option>
 					</select>
-					<div id="datosTransportadora" class="rowcnt"></div>
+					<div id="datosTransportadora" class="rowcnt">_<br>_</div>
 
 				</fieldset>
 				<fieldset class="rowcnt">
 					<legend>Destino</legend>
-					<select id="destinoMan" class="col-18">
+					<div class = "col2-8 gatherDate">
+						Recepción: <input type="date">
+					</div>
+					<select id="destinoMan">
 						<option value = "-1" selected>Destino</option>
 						<?php
 							require("../php/dbcon.php");
@@ -314,11 +317,7 @@
 							sqlsrv_close($conn);
 						?>
 					</select>
-					<div id="datosDestino" class="rowcnt"></div>
-				</fieldset>
-				<fieldset>
-					<legend>Fecha de recepción</legend>
-					<input  type="date" id="fechaDestino">
+					<div id="datosDestino" class="rowcnt">_<br>_</div>
 				</fieldset>
 				<div class="saveCloseBtnContainer">
 					<input class="btnGreen" type="button" value="Guardar" id="btnSaveAddService">

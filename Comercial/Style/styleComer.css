@@ -1,0 +1,27 @@
+.consecutivoOS{
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;  
+}
+
+.askDate{
+    text-align: right;
+    font-size: 14px;
+}
+.gatherDate{
+    text-align: right;
+    font-size: 14px;
+}
+
+#transportadoraMan{
+    min-width: 300px;
+    max-width: 300px;
+}
+#operadorMan{
+    min-width: 300px;
+    max-width: 300px;
+}
+#unidadMan1,#unidadMan2{
+    min-width: 300px;
+    max-width: 300px;
+}

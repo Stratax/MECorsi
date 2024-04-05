@@ -79,6 +79,7 @@ $(document).ready(function(){
 	$("#destinoMan").on('change',function(){
 		$("#datosDestino").load("php/datosDestino.php",{destino: this.value})	
 	});
+	
 	show(3);
 	$("#userIcon").click(function(){$("#userDiv").slideToggle(200);});
     
@@ -93,7 +94,9 @@ $(document).ready(function(){
 	);
 	$("#btnAddService").click(
 		function(){
+			$("#idService").load("php/blockOrderServiceId.php");
 			$("#addService").css("display","flex");
+			
 		}
 	);
 

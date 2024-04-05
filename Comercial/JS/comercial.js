@@ -1,3 +1,5 @@
+
+
 function show(n){
 	switch(n){
 		case 1:
@@ -65,7 +67,19 @@ function editClient(idClient1){
 }
 
 $(document).ready(function(){
-	show(1);
+	$("#clienteMan").on('change',function(){
+		$("#datosCliente").load("php/datosCliente.php",{cliente: this.value})
+	});
+	$("#transportadoraMan").on('change', function(){
+		$("#unidadMan1").load("php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 1'});
+		$("#operadorMan").load("php/selectOperador.php",{transportadora: this.value});
+		$("#unidadMan2").load("php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 2'});
+		$("#datosTransportadora").load("php/datosTransportadora.php",{transportadora: this.value});					
+	});
+	$("#destinoMan").on('change',function(){
+		$("#datosDestino").load("php/datosDestino.php",{destino: this.value})	
+	});
+	show(3);
 	$("#userIcon").click(function(){$("#userDiv").slideToggle(200);});
     
 	$("#m_Home").click(function(){show(1);});
@@ -77,7 +91,13 @@ $(document).ready(function(){
 			$("#addClient").css("display","flex");
 		}
 	);
+	$("#btnAddService").click(
+		function(){
+			$("#addService").css("display","flex");
+		}
+	);
 
+	
 	$("#btnSaveAddClient").click(
 		function(){
 			$.post(
@@ -172,5 +192,6 @@ $(document).ready(function(){
 
 	$("#btnCloseAddClient").click(function(){$("#addClient").css("display","none");});
 	$("#btnCloseEditClient").click(function(){$("#editClient").css("display","none");});
+	$("#btnCloseAddService").click(function(){$("#addService").css("display","none");});
     	
 });

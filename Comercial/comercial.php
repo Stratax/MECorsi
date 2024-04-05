@@ -105,35 +105,28 @@
 					</div>
 				</div>
 
-				<!-- ***** MANIFIESTO ENTRADA*****-->
+<!--**********************************************************-->
+<!-------                **** Orden de Servicio ****             -------->
+<!--**********************************************************-->
 				<div class="panel" id="menu3">
 					<div class="rowcnt">
-						<div class="col-6">
-							<div id="titleClienteLista" class = "col-12">
-								Manifiesto 
-								<input type="submit" id ="buttonManifiestoNuevo" value="Nuevo" class="buttonManifiestoNuevo">
+						<div class="col-12">
+							<div class = "titlePanel col-12">
+								Orden de Servicio 
+								<input type="submit" id ="btnAddService" value="Nueva" class="buttonManifiestoNuevo">
 							</div>
-							<div class="clienteHolder col-12">
-								<div class="col-12 hTListCliente">
+
+							<div class="fullHolder col-12">
+								<div class="rowcnt headerTableList">
 									<div class="col-2">Manifiesto</div>
                 					<div class="col-4">Cliente</div>
                 					<div class="col-4">Destino</div>
                 					<div class="col-2">Options</div>
         						</div>
-								<div id ="showManifiesto" class="col-12"></div>
+								<div id ="showService" class="col-12"></div>
 							</div>
 						</div>
-						<div class="col-1" style="height: 500px"></div>
-						<div class ="col-5">
-							<div id="titleClienteLista" class = "col-12">
-								Detalle del Manifiesto: 
-							</div>
-							<div class="clienteHolder col-12">
-								<div id ="showManifiestoDetalle" class="col-12"></div>
-							</div>
-						</div>
-					</div>
-					
+					</div>	
 				</div>
 			</section> 
 		</section>
@@ -144,7 +137,9 @@
 
 
 
-		<!-- Modal Windows-->
+<!--**********************************************************-->
+<!-------           **** Modal Windows ****             -------->
+<!--**********************************************************-->
 		<div class = "modalPanel" id = addClient>
 			<div class = "modalInnerPanel" id = "formAddClient">
 				
@@ -233,7 +228,105 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<div class = "modalPanel" id = addService>
+			<div class = "modalInnerPanel" id = "formAddService">
+				<?php
+					require("../php/dbcon.php");
+					$sql ="SELECT Valor FROM Consecutivo WHERE Tabla ='OrdenServicio'";
+					$stmt = sqlsrv_query($conn,$sql);
+					$row = sqlsrv_fetch_array($stmt);
+					$consecutivo = $row['Valor'] + 1;
+					$sql2 = "UPDATE Consecutivo SET Valor = {$consecutivo} WHERE Tabla = 'ManifiestosEntrada'";
+					$stmt = sqlsrv_query($conn,$sql2);
+					sqlsrv_close($conn);
+				?><!-- Move to a rest service -->
+				
+				<h1>Orden de Servicio: 
+					<?php
+						$idManifiesto = 'OS'.str_pad($consecutivo,4,"0",STR_PAD_LEFT)."/".Date('y');
+						echo '<div id="idManifiestoMan" value='.$idManifiesto.'>'.$idManifiesto.'</div>';
+					?>
+					
+				</h1>
+				<fieldset class="rowcnt">
+					<legend>Cliente</legend>
+					<select id="clienteMan" class="col2-8">
+						<option value="-1" selected>Cliente</option>
+						<?php
+							require("../php/dbcon.php");
+							$sql = "SELECT IdCliente, RazonSocial FROM Cliente";
+							$stmt = sqlsrv_query($conn,$sql);
+							while($row = sqlsrv_fetch_array($stmt)){
+								$idCliente = $row['IdCliente'];
+								$razonSocial = $row['RazonSocial'];
+								echo '<option value="'.$idCliente.'">'.$razonSocial.'</option>';
+							}
+							sqlsrv_close($conn);
+						?>
+					</select>
+					<div id="datosCliente" class="rowcnt"></div>
+					
+				</fieldset>	
+				<fieldset class="rowcnt">
+					<legend>Transportadora</legend>
+						<select id="transportadoraMan" class="col2-11">
+							<option value = "-1" selected>Transportadora</option>
+					
+					<?php
+						require("../php/dbcon.php");
+						$sql = "SELECT IdTransportadora, RazonSocial FROM Transportadora";
+						$stmt = sqlsrv_query($conn,$sql);
+						
+						while($row = sqlsrv_fetch_array($stmt)){
+							$idTransportadora = $row['IdTransportadora'];
+							$razonSocial = $row['RazonSocial'];
+							echo '<option value="'.$idTransportadora.'">'.$razonSocial.'</option>';
+						}
+						sqlsrv_close($conn);
+					?>
+					</select>						
+					<select id="operadorMan" class="col2-11">
+						<option value="-1">Operador</option>
+					</select>
+					<select id="unidadMan1" class="col2-6">
+						<option value="-1">Unidad 1</option>
+					</select>
+					<select id="unidadMan2" class="col2-6">
+						<option value="-1">Unidad 2</option>
+					</select>
+					<div id="datosTransportadora" class="rowcnt"></div>
+
+				</fieldset>
+				<fieldset class="rowcnt">
+					<legend>Destino</legend>
+					<select id="destinoMan" class="col-18">
+						<option value = "-1" selected>Destino</option>
+						<?php
+							require("../php/dbcon.php");
+							$sql = "SELECT IdEmpresa, RazonSocial FROM Empresa";
+							$stmt = sqlsrv_query($conn,$sql);
+							while($row = sqlsrv_fetch_array($stmt)){
+								$idEmpresa = $row['IdEmpresa'];
+								$razonSocial = $row['RazonSocial'];
+								echo '<option value="'.$idEmpresa.'">'.$razonSocial.'</option>';
+							}
+							sqlsrv_close($conn);
+						?>
+					</select>
+					<div id="datosDestino" class="rowcnt"></div>
+				</fieldset>
+				<fieldset>
+					<legend>Fecha de recepción</legend>
+					<input  type="date" id="fechaDestino">
+				</fieldset>
+				<div class="saveCloseBtnContainer">
+					<input class="btnGreen" type="button" value="Guardar" id="btnSaveAddService">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddService">
+				</div>
+		</div>
+				
+	
 		
 	</body>
 	

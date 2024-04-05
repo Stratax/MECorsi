@@ -23,8 +23,7 @@ function show(n){
 			$("#menu3").show();
 			$("li").css("background-color","transparent");
 			$("#m_OrdServ").css("background-color","#3080C0");
-			$("#showManifiesto").load("../Comercial/php/getManifiestoEntrada.php",{Manifiesto: 'x'});
-
+			$("#showService").load("./php/getOs.php",{idOrderService: -1});
         break;
 		
 	}
@@ -94,9 +93,15 @@ $(document).ready(function(){
 	);
 	$("#btnAddService").click(
 		function(){
-			$("#idService").load("php/blockOrderServiceId.php");
-			$("#addService").css("display","flex");
-			
+			// $("#idService").load("php/blockOrderServiceId.php");
+			// $("#addService").css("display","flex");
+			$.post("./php/addOS.php",
+				{},
+				function(data,status){
+					console.log(data + status);
+					$("#showService").load("./php/getOs.php",{idOrderService: -1});
+				}
+			);
 		}
 	);
 

@@ -118,8 +118,8 @@
 
 							<div class="fullHolder col-12">
 								<div class="rowcnt headerTableList">
-									<div class="col-2">Manifiesto</div>
-                					<div class="col-4">Cliente</div>
+									<div class="col2-3">Orden</div>
+                					<div class="col2-6">Cliente</div>
                 					<div class="col-4">Destino</div>
                 					<div class="col-2">Options</div>
         						</div>

@@ -13,15 +13,18 @@
     font-size: 14px;
 }
 
-#transportadoraMan{
+#transportInMan{
     min-width: 300px;
     max-width: 300px;
 }
-#operadorMan{
+#operatorMan{
     min-width: 300px;
     max-width: 300px;
 }
-#unidadMan1,#unidadMan2{
+#unitMan1,#unitMan2{
     min-width: 300px;
     max-width: 300px;
 }
+
+
+/*Style for PDF Generator in Manifiestos*/

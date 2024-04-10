@@ -1,5 +1,3 @@
-
-
 function show(n){
 	switch(n){
 		case 1:
@@ -18,15 +16,23 @@ function show(n){
 			$("#showLista").load("../Comercial/php/getClient.php",{Cliente: -1});
         break;
 		case 3:
-			$("#title").text("Orden de servicio")
+			$("#title").text("Manifiesto de Entrada")
 			$(".panel").hide(); 
 			$("#menu3").show();
 			$("li").css("background-color","transparent");
-			$("#m_OrdServ").css("background-color","#3080C0");
-			$("#showService").load("./php/getOs.php",{idOrderService: -1});
-        break;
-		
+			$("#m_InMan").css("background-color","#3080C0");
+			$("#showService").load("./php/getIncomeManifest.php",{idIncomeManifest: -1});
+        break;	
 	}
+}
+
+function pdfManifest(idMan){
+	$.post(
+		"./php/manifiestoPDF.php",{IdManifiesto : idMan},
+		function(data, status){
+			console.log("Done PDF: " + data +  status);
+		}
+	);
 }
 
 function editClient(idClient1){
@@ -65,18 +71,77 @@ function editClient(idClient1){
 	);
 }
 
+function editIncomeManifest(idManifest){
+		
+	
+	$("#idManifest").html(idManifest);
+	
+	$.post("./php/getIncomeManifest.php",
+		{idIncomeManifest : idManifest},
+		function(data,status){
+			console.log(status);
+			$("#dateInMan").val(data.FechaSolicitud);
+			$("#dateInManGather").val(data.FechaRecoleccion);
+			$("#dateInManDestiny").val(data.FechaRecepcion);
+			
+			if(data.IdCliente != null){
+				$("#clientInMan option[value ="+data.IdCliente+"]").prop("selected",true);
+				$("#datosCliente").load("./php/datosCliente.php",{cliente: data.IdCliente});
+			}else{
+				$("#clientInMan option[value =-1]").prop("selected",true);
+				$("#datosCliente").html("_<br>_");
+			}
+
+			if(data.IdTransportadora == null){
+				$("#transportInMan option[value =-1]").prop("selected",true);
+				$("#operatorMan option[value = -1]").prop("selected",true);
+				$("#unitMan1 option[value =-1]").prop("selected",true);
+				$("#unitMan2 option[value =-1]").prop("selected",true);
+				
+				$("#datosTransportadora").html("_<br>_");				
+			}else{
+				$("#datosTransportadora").load("php/datosTransportadora.php",{transportadora: data.IdTransportadora});			
+				$("#operatorMan").load("./php/selectOperador.php",{transportadora: data.IdTransportadora});
+				$("#unitMan1").load("./php/selectUnidad.php",{transportadora: data.IdTransportadora,nUnidad: '1'});
+				$("#unitMan2").load("./php/selectUnidad.php",{transportadora: data.IdTransportadora,nUnidad: '2'});
+				setTimeout(function(){ //witouth the timeOut JS first change the prop and then load the concepts
+					$("#transportInMan option[value ="+data.IdTransportadora+"]").prop("selected",true);
+					$("#operatorMan option[value ="+data.IdOperador+"]").prop("selected",true);
+					$("#unitMan1 option[value ="+data.IdUnidad+"]").prop("selected",true);
+					$("#unitMan2 option[value ="+data.IdUnidad2+"]").prop("selected",true);			
+				}	
+					,500
+				);
+				console.log("Worked");
+			}				
+			
+			if(data.IdEmpresa != null){
+				$("#destinyMan option[value ="+data.IdEmpresa+"]").prop("selected",true);
+				$("#datosDestino").load("php/datosDestino.php",{destino: data.IdEmpresa});	
+			}else{
+				$("#destinyMan option[value =-1]").prop("selected",true);
+				$("#datosDestino").html("_<br>_");
+			}
+		},"json"
+	);
+	$("#addIncomeManifest").css("display","flex");			
+}
+
+
 $(document).ready(function(){
-	$("#clienteMan").on('change',function(){
-		$("#datosCliente").load("php/datosCliente.php",{cliente: this.value})
+	
+	$("#clientInMan").on('change',function(){
+		$("#datosCliente").load("./php/datosCliente.php",{cliente: this.value})
 	});
-	$("#transportadoraMan").on('change', function(){
-		$("#unidadMan1").load("php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 1'});
-		$("#operadorMan").load("php/selectOperador.php",{transportadora: this.value});
-		$("#unidadMan2").load("php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 2'});
-		$("#datosTransportadora").load("php/datosTransportadora.php",{transportadora: this.value});					
+
+	$("#transportInMan").on('change', function(){
+		$("#unitMan1").load("./php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 1'});
+		$("#operatorMan").load("./php/selectOperador.php",{transportadora: this.value});
+		$("#unitMan2").load("./php/selectUnidad.php",{transportadora: this.value,nUnidad: ' 2'});
+		$("#datosTransportadora").load("./php/datosTransportadora.php",{transportadora: this.value});					
 	});
-	$("#destinoMan").on('change',function(){
-		$("#datosDestino").load("php/datosDestino.php",{destino: this.value})	
+	$("#destinyMan").on('change',function(){
+		$("#datosDestino").load("./php/datosDestino.php",{destino: this.value})	
 	});
 	
 	show(3);
@@ -84,22 +149,20 @@ $(document).ready(function(){
     
 	$("#m_Home").click(function(){show(1);});
 	$("#m_Cliente").click(function(){show(2);});
-	$("#m_OrdServ").click(function(){show(3);});
+	$("#m_InMan").click(function(){show(3);});
 
 	$("#btnAddClient").click(
 		function(){
 			$("#addClient").css("display","flex");
 		}
 	);
-	$("#btnAddService").click(
+	$("#btnAddIncomeManifest").click(
 		function(){
-			// $("#idService").load("php/blockOrderServiceId.php");
-			// $("#addService").css("display","flex");
-			$.post("./php/addOS.php",
+			$.post("./php/addIncomeManifest.php",
 				{},
 				function(data,status){
 					console.log(data + status);
-					$("#showService").load("./php/getOs.php",{idOrderService: -1});
+					$("#showService").load("./php/getIncomeManifest.php",{idIncomeManifest: -1});
 				}
 			);
 		}
@@ -177,6 +240,33 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#btnSaveAddMan").click(
+		function(){
+			$.post(
+				"./php/editIncomeManifest.php",
+				{
+					IdManifiesto: $("#idManifest").html(),
+					IdCliente: $("#clientInMan").find("option:selected").val(),
+					IdTransportadora: $("#transportInMan").find("option:selected").val(),
+					IdOperador: $("#operatorMan").find("option:selected").val(),
+					IdUnidad: $("#unitMan1").find("option:selected").val(),
+					IdUnidad2: $("#unitMan2").find("option:selected").val(),
+					IdEmpresa: $("#destinyMan").find("option:selected").val(),
+					FechaSolicitud: $("#dateInMan").val(),
+					FechaRecoleccion: $("#dateInManGather").val(),
+					FechaRecepcion: $("#dateInManDestiny").val(),
+					Estatus: "SOLICITUD"
+				},
+				function(data,status){
+					console.log(data+status);
+					alert("Se guardo la solicitud de servicio con éxito");
+					$("#showService").load("./php/getIncomeManifest.php",{idIncomeManifest: -1});
+					$("#addIncomeManifest").css("display","none");
+				}
+			);
+		}
+	);
+
 	$("#btnDeleteEditClient").click(
 		function(){
 			var opt = confirm("Eliminará de forma permanente este Cliente al igual\n que toda lainformación relacionada a este Cliente\n¿Desea continuar?");
@@ -200,6 +290,6 @@ $(document).ready(function(){
 
 	$("#btnCloseAddClient").click(function(){$("#addClient").css("display","none");});
 	$("#btnCloseEditClient").click(function(){$("#editClient").css("display","none");});
-	$("#btnCloseAddService").click(function(){$("#addService").css("display","none");});
+	$("#btnCloseAddMan").click(function(){$("#addIncomeManifest").css("display","none");});
     	
 });

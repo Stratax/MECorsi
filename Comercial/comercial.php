@@ -59,7 +59,7 @@
 				<ul id="mainMenu">
 					<li id="m_Home">Inicio</li>
 					<li id="m_Cliente">Clientes</li>
-					<li id="m_OrdServ">Orden de Servicio</li>
+					<li id="m_InMan">Manifiesto de Entrada</li>
 				</ul>						
 			</nav>
 			
@@ -106,24 +106,27 @@
 				</div>
 
 <!--**********************************************************-->
-<!-------                **** Orden de Servicio ****             -------->
+<!-------      **** Manifiesto Entrada ****             -------->
 <!--**********************************************************-->
 				<div class="panel" id="menu3">
 					<div class="rowcnt">
 						<div class="col-12">
 							<div class = "titlePanel col-12">
-								Orden de Servicio 
-								<input type="submit" id ="btnAddService" value="Nueva" class="buttonManifiestoNuevo">
+								Manifiesto de Entrada 
+								<input type="submit" id ="btnAddIncomeManifest" value="Nueva" class="buttonManifiestoNuevo">
 							</div>
 
-							<div class="fullHolder col-12">
+							<div class="fullHolder col-12"  style="overflow-y:auto">
 								<div class="rowcnt headerTableList">
-									<div class="col2-3">Orden</div>
-                					<div class="col2-6">Cliente</div>
-                					<div class="col-4">Destino</div>
-                					<div class="col-2">Options</div>
+									<div class="col2-2">Manifiesto</div>
+                					<div class="col2-5">Cliente</div>
+                					<div class="col2-5">Transportista</div>
+                					<div class="col2-5">Destino</div>
+									<div class="col2-2">Solicitud</div>
+									<div class="col2-3">Estatus</div>
+									<div class="col2-2">Docs</div>
         						</div>
-								<div id ="showService" class="col-12"></div>
+								<div id ="showService" class="col-12" ></div>
 							</div>
 						</div>
 					</div>	
@@ -229,23 +232,23 @@
 			</div>
 		</div>
 
-		<div class = "modalPanel" id = addService>
-			<div class = "modalInnerPanel" id = "formAddService">
+		<div class = "modalPanel" id = addIncomeManifest>
+			<div class = "modalInnerPanel" id = "formAddIncomeManifest">
 				
 				<div class = "consecutivoOS col-6">
-					Orden de Servicio: 
-					<div id="idService" style = "color:red"></div>
+					Manifiestos de Entrada: 
+					<div id="idManifest" style = "color:red"></div>
 				</div>
 				<div class = "askDate col-6">
-					Fecha de Solicitud<br> <input type="date">
+					Fecha de Solicitud<br> <input id = 'dateInMan' type= "date">
 				</div>
 				
 				<fieldset class="rowcnt">
 					<legend>Generador</legend>
 					<div class = "col2-8 gatherDate">
-						Recolección: <input type="date">
+						Recolección: <input id = 'dateInManGather' type="date">
 					</div>
-					<select id="clienteMan">
+					<select id="clientInMan">
 						<option value="-1" selected>Cliente</option>
 						<?php
 							require("../php/dbcon.php");
@@ -259,15 +262,11 @@
 							sqlsrv_close($conn);
 						?>
 					</select>
-					<div id="datosCliente" class="col2-24">_<br>_</div>
-					<select id="idMan">
-						<option value="-1" selected>Manifiesto</option>
-					</select>
-					
+					<div id="datosCliente" class="col2-24">_<br>_</div>					
 				</fieldset>	
 				<fieldset class="rowcnt">
 					<legend>Transportista</legend>
-						<select id="transportadoraMan">
+						<select id="transportInMan">
 							<option value = "-1" selected>Transportadora</option>
 					
 								<?php
@@ -282,17 +281,16 @@
 									}
 									sqlsrv_close($conn);
 								?>
-
 						</select>
 
-					<select id="operadorMan">
+					<select id="operatorMan">
 						<option value="-1">Operador</option>
 					</select>
 
-					<select id="unidadMan1">
+					<select id="unitMan1">
 						<option value="-1">Unidad 1</option>
 					</select>
-					<select id="unidadMan2">
+					<select id="unitMan2">
 						<option value="-1">Unidad 2</option>
 					</select>
 					<div id="datosTransportadora" class="rowcnt">_<br>_</div>
@@ -301,10 +299,10 @@
 				<fieldset class="rowcnt">
 					<legend>Destino</legend>
 					<div class = "col2-8 gatherDate">
-						Recepción: <input type="date">
+						Recepción: <input id = 'dateInManDestiny' type="date">
 					</div>
-					<select id="destinoMan">
-						<option value = "-1" selected>Destino</option>
+					<select id="destinyMan">
+						<option value = "-1" sele1cted>Destino</option>
 						<?php
 							require("../php/dbcon.php");
 							$sql = "SELECT IdEmpresa, RazonSocial FROM Empresa";
@@ -320,8 +318,8 @@
 					<div id="datosDestino" class="rowcnt">_<br>_</div>
 				</fieldset>
 				<div class="saveCloseBtnContainer">
-					<input class="btnGreen" type="button" value="Guardar" id="btnSaveAddService">
-					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddService">
+					<input class="btnGreen" type="button" value="Guardar" id="btnSaveAddMan">
+					<input class="btnRed" type="button" value="Cerrar" id="btnCloseAddMan">
 				</div>
 		</div>
 				

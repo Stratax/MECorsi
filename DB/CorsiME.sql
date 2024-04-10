@@ -95,8 +95,22 @@ CREATE TABLE Operador(
 	Alta VARCHAR(12)
 )
 
-CREATE TABLE OrdenServicio{
+CREATE TABLE OrdenServicio(
 	IdOrdenServicio VARCHAR(10) PRIMARY KEY,
+	IdCliente INT,
+	IdTransportadora INT,
+	IdOperador INT,
+	IdUnidad INT,
+	IdUnidad2 INT,
+	IdEmpresa INT,
+	FechaRecoleccion VARCHAR(12),
+	FechaRecepcion VARCHAR(12),
+	FechaOrden VARCHAR(12),
+)
+
+
+CREATE TABLE ManifiestoEntrada(
+	IdManifiesto VARCHAR(10) PRIMARY KEY,
 	IdCliente INT,
 	IdTransportadora INT,
 	IdOperador INT,
@@ -105,23 +119,7 @@ CREATE TABLE OrdenServicio{
 	IdEmpresa INT,
 	FechaSolicitud VARCHAR(12),
 	FechaRecoleccion VARCHAR(12),
-	Fecharecepcion VARCHAR(12),
-	FechaOrden VARCHAR(12),
-}
-
-
-CREATE TABLE ManifiestoEntrada(
-	IdManifiesto VARCHAR(10) PRIMARY KEY,
-	IdCliente INT,
-	IdTransportadora INT,
-	IdUnidad INT,
-	IdUnidad2 INT,
-	IdOperador INT,
-	IdEmpresa INT,
-	FechaEmbarque VARCHAR(12),
-	FechaDestino VARCHAR(12),
-	FechaEntregaManifiesto VARCHAR(12),
-	FechaManifiesto VARCHAR(12),
+	FechaRecepcion VARCHAR(12),
 	Estatus VARCHAR(30)
 )
 

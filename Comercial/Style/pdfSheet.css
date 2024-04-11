@@ -1,3 +1,12 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+div{
+	font-family:Arial, Helvetica, sans-serif;
+}
 .rowcnt::after {
 	content: "";
 	clear: both;
@@ -11,7 +20,7 @@
 }
 [class*="col2-"]{
 	float: left;
-	padding: 2px;
+	padding: 10px;
 	border: 0px solid green;
 }
 
@@ -42,28 +51,43 @@
 	.col-12 {width: 100%;float: left;}
 	
 																	
-	.col2-1 {width:	4.16%}
-	.col2-2 {width: 8.33%}
-	.col2-3 {width: 12.50%}
-	.col2-4 {width: 16.66%}
-	.col2-5 {width: 20.83%}
-	.col2-6 {width: 25%}
-	.col2-7 {width: 29.16%}
-	.col2-8 {width: 33.33%}
-	.col2-9 {width: 37.50%}
-	.col2-10 {width: 41.66%}
-	.col2-11 {width: 45.82%}
-	.col2-12 {width: 50%}
-	.col2-13 {width: 54.16%}
-	.col2-14 {width: 58.33%}
-	.col2-15 {width: 62.5%}
-	.col2-16 {width: 66.66%}
-	.col2-17 {width: 70.82%}
-	.col2-18 {width: 75%}
-	.col2-19 {width: 79.15%}
-	.col2-20 {width: 83.33%}
-	.col2-21 {width: 87.5%}
-	.col2-22 {width: 91.66%}
-	.col2-23 {width: 95.81%}
-	.col2-24 {width: 100%}
+	.col2-1 {box-sizing: border-box;width:	4%;float: left;padding-top: 4px;}
+	.col2-2 {box-sizing: border-box;width: 8%;float: left;padding-top: 4px;}
+	.col2-3 {box-sizing: border-box;width: 12%;float: left;padding-top: 4px;}
+	.col2-4 {box-sizing: border-box;width: 16%;float: left;padding-top: 4px;}
+	.col2-5 {box-sizing: border-box;width: 20%;float: left;padding-top: 4px;}
+	.col2-6 {box-sizing: border-box;width: 24%;float: left;padding-top: 4px;}
+	.col2-7 {box-sizing: border-box;width: 28%;float: left;padding-top: 4px;}
+	.col2-8 {box-sizing: border-box;width: 32%;float: left;padding-top: 4px;}
+	.col2-9 {box-sizing: border-box;width: 36%;float: left;padding-top: 4px;}
+	.col2-10 {box-sizing: border-box;width: 40%;float: left;padding-top: 4px;}
+	.col2-11 {box-sizing: border-box;width: 44%;float: left;padding-top: 4px;}
+	.col2-12 {box-sizing: border-box;width: 48%;float: left;padding-top: 4px;}
+	.col2-13 {box-sizing: border-box;width: 52%;float: left;padding-top: 4px;}
+	.col2-14 {box-sizing: border-box;width: 56%;float: left;padding-top: 4px;}
+	.col2-15 {box-sizing: border-box;width: 60%;float: left;padding-top: 4px;}
+	.col2-16 {box-sizing: border-box;width: 64%;float: left;padding-top: 4px;}
+	.col2-17 {box-sizing: border-box;width: 68%;float: left;padding-top: 4px;}
+	.col2-18 {box-sizing: border-box;width: 72%;float: left;padding-top: 4px;}
+	.col2-19 {box-sizing: border-box;width: 76%;float: left;padding-top: 4px;}
+	.col2-20 {box-sizing: border-box;width: 80%;float: left;padding-top: 4px;}
+	.col2-21 {box-sizing: border-box;width: 84%;float: left;padding-top: 4px;}
+	.col2-22 {box-sizing: border-box;width: 88%;float: left;padding-top: 4px;}
+	.col2-23 {box-sizing: border-box;width: 92%;float: left;padding-top: 4px;}
+	.col2-24 {box-sizing: border-box;width: 96%;float: left;padding-top: 4px;}
 
+/*B;float: left;orders*/
+
+.l{
+	float:left;
+	border-left: 1px solid black;
+	padding-top: 4px;
+}
+.r{float:left;border-right: 1px solid black;padding-top: 4px;}
+.b{float:left;border-bottom: 1px solid black;padding-top: 4px;}
+.t{float:left;border-top: 1px solid black;padding-top: 4px;}
+
+.rota{
+	transform: rotate(90deg);
+	color:red;
+}
